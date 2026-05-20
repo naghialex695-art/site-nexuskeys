@@ -1,0 +1,31 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "title": "Licente Microsoft la Preturi Imbatabile",
+        "subtitle": "Windows 11, Office 2024 si alte licente originale. Activare instant, economii de pana la 80%."
+      }
+    },
+    "trust": {
+      "type": "trust-badges",
+      "settings": {}
+    },
+    "categories": {
+      "type": "categories-grid",
+      "settings": {}
+    },
+    "featured": {
+      "type": "featured-products",
+      "settings": {
+        "title": "Produse Recomandate",
+        "products_to_show": 8
+      }
+    },
+    "how": {
+      "type": "how-it-works",
+      "settings": {}
+    }
+  },
+  "order": ["hero", "trust", "categories", "featured", "how"]
+}

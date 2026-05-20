@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ro" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <!-- SEO Meta Tags -->
+  <title>
+    {%- if page_title == blank -%}
+      {{ shop.name }} — Licente Software Microsoft | Livrare Instant
+    {%- elsif template.name == 'index' -%}
+      {{ shop.name }} — Licente Software Microsoft | Livrare Instant
+    {%- else -%}
+      {{ page_title }} | {{ shop.name }}
+    {%- endif -%}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- else -%}
+    <meta name="description" content="Licente software Microsoft originale la preturi reduse. Windows 11, Office 2024, Server. Livrare instant prin email. Garantie 30 zile.">
+  {%- endif -%}
+
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ page_title | default: shop.name }}">
+  <meta property="og:description" content="{{ page_description | default: 'Licente software Microsoft originale la preturi reduse. Livrare instant.' }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:site_name" content="{{ shop.name }}">
+  {%- if page_image -%}
+    <meta property="og:image" content="{{ page_image | image_url: width: 1200 }}">
+    <meta property="og:image:width" content="1200">
+  {%- endif -%}
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page_title | default: shop.name }}">
+
+  <!-- Favicon -->
+  {%- if settings.favicon -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- endif -%}
+
+  <!-- Preconnect pentru resurse externe -->
+  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+  <!-- Critical CSS inline — elimina render-blocking complet -->
+  <style>
+    {{ 'critical.css' | asset_url | stylesheet_tag }}
+    *,*::before,*::after{box-sizing:border-box}
+    :root{
+      --color-primary:#1D4ED8;
+      --color-primary-dark:#1E40AF;
+      --color-accent:#3B82F6;
+      --color-success:#16A34A;
+      --color-danger:#DC2626;
+      --color-bg:#F8FAFC;
+      --color-card:#FFFFFF;
+      --color-text:#0F172A;
+      --color-text-muted:#475569;
+      --color-border:#E2E8F0;
+      --color-highlight:#EFF6FF;
+      --font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+      --radius:8px;
+      --radius-lg:12px;
+      --shadow:0 1px 3px rgba(0,0,0,.1),0 1px 2px rgba(0,0,0,.06);
+      --shadow-md:0 4px 6px rgba(0,0,0,.07),0 2px 4px rgba(0,0,0,.06);
+      --shadow-lg:0 10px 15px rgba(0,0,0,.1),0 4px 6px rgba(0,0,0,.05);
+      --max-w:1280px;
+      --header-h:64px;
+    }
+    html{scroll-behavior:smooth;font-size:16px}
+    body{margin:0;font-family:var(--font-sans);background:var(--color-bg);color:var(--color-text);line-height:1.6;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit;text-decoration:none}
+    button{cursor:pointer;border:none;background:none;font-family:inherit}
+    .skip-link{position:absolute;top:-100%;left:1rem;padding:.5rem 1rem;background:var(--color-primary);color:#fff;border-radius:var(--radius);z-index:9999;font-size:.875rem}
+    .skip-link:focus{top:1rem}
+    .container{width:100%;max-width:var(--max-w);margin:0 auto;padding:0 1rem}
+    @media(min-width:640px){.container{padding:0 1.5rem}}
+    @media(min-width:1024px){.container{padding:0 2rem}}
+  </style>
+
+  <!-- CSS principal — defer cu preload -->
+  <link rel="preload" href="{{ 'theme.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="{{ 'theme.css' | asset_url }}"></noscript>
+
+  <!-- Schema.org Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "{{ shop.name }}",
+    "url": "{{ shop.url }}",
+    "description": "Licente software Microsoft originale la preturi reduse. Windows, Office, Server.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "availableLanguage": "Romanian"
+    },
+    "areaServed": "RO",
+    "currenciesAccepted": "RON",
+    "paymentAccepted": "Credit Card, PayPal"
+  }
+  </script>
+
+  {%- if template.name == 'product' -%}
+    {%- render 'schema-product', product: product -%}
+  {%- endif -%}
+
+  {{ content_for_header }}
+</head>
+
+<body class="template-{{ template.name }}{% if customer %} customer-logged-in{% endif %}">
+
+  <!-- Skip to content (Accessibility) -->
+  <a class="skip-link" href="#MainContent">Sari la continut</a>
+
+  {%- sections 'header-group' -%}
+  {% section 'header' %}
+
+  <main id="MainContent" role="main" tabindex="-1">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  <!-- JS defer — non-blocking, dupa render -->
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+
+  <!-- Notificari cos (aria-live) -->
+  <div id="cart-notification" class="cart-notification" role="status" aria-live="polite" aria-atomic="true" hidden>
+    <div class="cart-notification__inner">
+      <p class="cart-notification__message"></p>
+      <a href="/cart" class="btn btn--primary btn--sm">Vezi cosul</a>
+    </div>
+  </div>
+
+</body>
+</html>

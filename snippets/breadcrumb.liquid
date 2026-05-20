@@ -1,0 +1,46 @@
+<nav aria-label="Breadcrumb" style="font-size:.875rem;color:var(--color-text-muted)">
+  <ol style="display:flex;flex-wrap:wrap;gap:.25rem;list-style:none;margin:0;padding:0" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="/" itemprop="item" style="color:var(--color-text-muted)">
+        <span itemprop="name">Acasa</span>
+      </a>
+      <meta itemprop="position" content="1">
+    </li>
+
+    {%- if template.name == 'product' -%}
+      <li aria-hidden="true">&rsaquo;</li>
+      {%- if product.collections.first -%}
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="{{ product.collections.first.url }}" itemprop="item" style="color:var(--color-text-muted)">
+            <span itemprop="name">{{ product.collections.first.title }}</span>
+          </a>
+          <meta itemprop="position" content="2">
+        </li>
+        <li aria-hidden="true">&rsaquo;</li>
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name" style="color:var(--color-text)">{{ product.title }}</span>
+          <meta itemprop="position" content="3">
+        </li>
+      {%- else -%}
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name" style="color:var(--color-text)">{{ product.title }}</span>
+          <meta itemprop="position" content="2">
+        </li>
+      {%- endif -%}
+
+    {%- elsif template.name == 'collection' -%}
+      <li aria-hidden="true">&rsaquo;</li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name" style="color:var(--color-text)">{{ collection.title }}</span>
+        <meta itemprop="position" content="2">
+      </li>
+
+    {%- elsif template.name == 'page' -%}
+      <li aria-hidden="true">&rsaquo;</li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name" style="color:var(--color-text)">{{ page.title }}</span>
+        <meta itemprop="position" content="2">
+      </li>
+    {%- endif -%}
+  </ol>
+</nav>

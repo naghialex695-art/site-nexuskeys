@@ -1,0 +1,83 @@
+{
+  "general": {
+    "password_page": {
+      "login_form_heading": "Magazin protejat cu parola",
+      "login_form_password_label": "Parola",
+      "login_form_password_placeholder": "Parola",
+      "login_form_submit": "Intra",
+      "login_form_error": "Parola gresita!"
+    },
+    "meta": {
+      "tags": "Etichetat cu",
+      "types": "Tip"
+    },
+    "breadcrumbs": {
+      "home": "Acasa"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Adauga in cos",
+      "sold_out": "Stoc epuizat",
+      "unavailable": "Indisponibil",
+      "quantity": "Cantitate",
+      "quantity_minimum_message": "Cantitate minima: {{minimum}}",
+      "price": {
+        "from": "De la",
+        "sale_price": "Pret redus",
+        "regular_price": "Pret normal",
+        "unit_price": "Pret unitar"
+      }
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Cosul meu",
+      "empty": "Cosul tau este gol.",
+      "close_cart": "Inchide cosul",
+      "subtotal": "Subtotal",
+      "shipping": "Livrare",
+      "total": "Total",
+      "checkout": "Finalizeaza comanda",
+      "remove": "Sterge",
+      "view_cart": "Vezi cosul",
+      "item_count": {
+        "one": "{{count}} produs",
+        "other": "{{count}} produse"
+      }
+    }
+  },
+  "sections": {
+    "header": {
+      "menu": "Meniu",
+      "search": "Cauta",
+      "cart": "Cos ({{count}})"
+    },
+    "footer": {
+      "copyright": "Drepturi de autor"
+    }
+  },
+  "collections": {
+    "general": {
+      "sort_by_label": "Sorteaza dupa",
+      "product_count": {
+        "one": "{{count}} produs",
+        "other": "{{count}} produse"
+      }
+    },
+    "sorting": {
+      "featured": "Recomandate",
+      "price_ascending": "Pret: mic la mare",
+      "price_descending": "Pret: mare la mic",
+      "title_ascending": "Alfabetic A-Z",
+      "created_descending": "Cele mai noi"
+    }
+  },
+  "accessibility": {
+    "skip_to_content": "Sari la continut",
+    "open_menu": "Deschide meniu",
+    "close_menu": "Inchide meniu",
+    "cart_count": "{{count}} produse in cos",
+    "loading": "Se incarca..."
+  }
+}

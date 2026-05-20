@@ -1,0 +1,30 @@
+{%- comment -%}Schema.org markup pentru pagina de produs — SEO + Google Shopping{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | json }},
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Windows",
+  "offers": {
+    "@type": "Offer",
+    "url": {{ shop.url | append: product.url | json }},
+    "priceCurrency": "RON",
+    "price": {{ product.price | divided_by: 100.0 | json }},
+    {%- if product.compare_at_price > product.price -%}
+    "priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 }}-12-31",
+    "highPrice": {{ product.compare_at_price | divided_by: 100.0 | json }},
+    {%- endif -%}
+    "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+    "seller": {
+      "@type": "Organization",
+      "name": {{ shop.name | json }}
+    }
+  },
+  "brand": {
+    "@type": "Brand",
+    "name": "Microsoft"
+  }
+}
+</script>

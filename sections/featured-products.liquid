@@ -1,0 +1,60 @@
+<section class="section" style="background:#fff;border-top:1px solid var(--color-border)" aria-labelledby="featured-title">
+  <div class="container">
+    <h2 class="section-title" id="featured-title">
+      {{ section.settings.title | default: 'Produse <span>Recomandate</span>' }}
+    </h2>
+
+    <div class="products-grid">
+      {%- assign featured = section.settings.collection -%}
+      {%- if featured != blank -%}
+        {%- for product in featured.products limit: section.settings.products_to_show -%}
+          {%- render 'product-card', product: product -%}
+        {%- endfor -%}
+      {%- else -%}
+        {%- for product in collections.all.products limit: section.settings.products_to_show -%}
+          {%- render 'product-card', product: product -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="/collections/all" class="btn btn--outline btn--lg">
+        Vezi toate produsele
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Produse Recomandate",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titlu sectiune",
+      "default": "Produse Recomandate"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Colectie de afisat"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Numar produse",
+      "min": 4,
+      "max": 12,
+      "step": 2,
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Produse Recomandate"
+    }
+  ]
+}
+{% endschema %}

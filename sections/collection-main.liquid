@@ -1,0 +1,63 @@
+<div class="collection-header">
+  <div class="container">
+    <h1>{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}
+      <p class="collection-meta">{{ collection.description }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+<div class="container">
+  <div class="collection-toolbar">
+    <p class="collection-count">{{ collection.products_count }} produse</p>
+    <div class="collection-sort">
+      <label for="sort-select" class="sr-only">Sorteaza dupa</label>
+      <select id="sort-select" data-collection-sort aria-label="Sorteaza produsele">
+        <option value="manual" {% if collection.sort_by == 'manual' %}selected{% endif %}>Recomandate</option>
+        <option value="price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>Pret: mic la mare</option>
+        <option value="price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>Pret: mare la mic</option>
+        <option value="title-ascending" {% if collection.sort_by == 'title-ascending' %}selected{% endif %}>Alfabetic A-Z</option>
+        <option value="created-descending" {% if collection.sort_by == 'created-descending' %}selected{% endif %}>Cele mai noi</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="products-grid">
+    {%- for product in collection.products -%}
+      {%- render 'product-card', product: product -%}
+    {%- else -%}
+      <p style="grid-column:1/-1;text-align:center;color:var(--color-text-muted);padding:3rem 0">Nu exista produse in aceasta categorie.</p>
+    {%- endfor -%}
+  </div>
+
+  {%- if paginate.pages > 1 -%}
+    {%- paginate collection.products by 12 -%}
+      <nav class="pagination" aria-label="Paginare produse">
+        {%- if paginate.previous -%}
+          <a href="{{ paginate.previous.url }}" aria-label="Pagina anterioara">&laquo;</a>
+        {%- endif -%}
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <a href="{{ part.url }}" aria-label="Pagina {{ part.title }}">{{ part.title }}</a>
+          {%- else -%}
+            {%- if part.title == paginate.current_page -%}
+              <span class="current" aria-current="page" aria-label="Pagina curenta {{ part.title }}">{{ part.title }}</span>
+            {%- else -%}
+              <span>{{ part.title }}</span>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if paginate.next -%}
+          <a href="{{ paginate.next.url }}" aria-label="Pagina urmatoare">&raquo;</a>
+        {%- endif -%}
+      </nav>
+    {%- endpaginate -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Pagina Colectie",
+  "settings": []
+}
+{% endschema %}

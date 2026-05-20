@@ -1,0 +1,13 @@
+{% layout 'theme' %}
+
+<div class="container section">
+  <nav aria-label="Breadcrumb" style="margin-bottom:1.5rem">
+    {%- render 'breadcrumb' -%}
+  </nav>
+  <article>
+    <h1 style="margin-bottom:2rem;font-size:clamp(1.5rem,3vw,2.25rem)">{{ page.title }}</h1>
+    <div style="font-size:.9375rem;line-height:1.8;color:var(--color-text-muted);max-width:720px">
+      {{ page.content }}
+    </div>
+  </article>
+</div>

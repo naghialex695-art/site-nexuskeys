@@ -1,0 +1,73 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="/" class="site-logo" aria-label="{{ shop.name }} — Acasa">
+          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 28 28" fill="none">
+            <rect width="28" height="28" rx="6" fill="#3B82F6"/>
+            <path d="M14 6L20 10V14C20 17.31 17.31 21 14 22C10.69 21 8 17.31 8 14V10L14 6Z" fill="white" fill-opacity="0.9"/>
+            <path d="M12 14l2 2 4-4" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>NexusKey</span>
+        </a>
+        <p style="margin-top:.75rem">Licente software Microsoft originale la cele mai bune preturi. Livrare instant prin email, garantie 30 de zile.</p>
+        <p style="margin-top:.75rem;font-size:.8125rem;color:#64748B">Program: Luni—Vineri, 10:00–20:00</p>
+      </div>
+
+      <!-- Produse -->
+      <div class="footer-col">
+        <h3>Produse</h3>
+        <ul>
+          <li><a href="/collections/windows">Windows 11</a></li>
+          <li><a href="/collections/windows">Windows 10</a></li>
+          <li><a href="/collections/office">Office 2024</a></li>
+          <li><a href="/collections/office">Office 2021</a></li>
+          <li><a href="/collections/bundles">Pachete</a></li>
+          <li><a href="/collections/professional">Professional</a></li>
+        </ul>
+      </div>
+
+      <!-- Informatii -->
+      <div class="footer-col">
+        <h3>Informatii</h3>
+        <ul>
+          <li><a href="/pages/cum-functioneaza">Cum functioneaza</a></li>
+          <li><a href="/pages/garantie">Garantie 30 zile</a></li>
+          <li><a href="/pages/livrare">Livrare instant</a></li>
+          <li><a href="/pages/faq">Intrebari frecvente</a></li>
+          <li><a href="/pages/despre-noi">Despre noi</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:support@nexuskey.ro">support@nexuskey.ro</a></li>
+          <li><a href="/pages/contact">Formular contact</a></li>
+        </ul>
+        <div style="margin-top:1rem;display:flex;gap:.5rem;flex-wrap:wrap">
+          <span class="badge badge--success">Livrare instant</span>
+          <span class="badge badge--primary">30 zile garantie</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} NexusKey.ro — Toate drepturile rezervate</span>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
+        <a href="/policies/privacy-policy">Politica de confidentialitate</a>
+        <a href="/policies/terms-of-service">Termeni si conditii</a>
+        <a href="/policies/refund-policy">Politica de retur</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

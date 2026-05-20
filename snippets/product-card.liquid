@@ -1,0 +1,75 @@
+{%- comment -%}
+  Render: {% render 'product-card', product: product %}
+{%- endcomment -%}
+
+{%- assign has_discount = false -%}
+{%- if product.compare_at_price > product.price -%}
+  {%- assign has_discount = true -%}
+  {%- assign discount_pct = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round -%}
+{%- endif -%}
+
+<article class="product-card" aria-label="{{ product.title }}">
+  <a href="{{ product.url }}" class="product-card__img" tabindex="-1" aria-hidden="true">
+    {%- if product.featured_image -%}
+      <img
+        src="{{ product.featured_image | image_url: width: 400 }}"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        width="400"
+        height="400"
+        loading="lazy"
+      >
+    {%- else -%}
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="1.5" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <path d="M9 12l2 2 4-4"/>
+      </svg>
+    {%- endif -%}
+
+    {%- if has_discount -%}
+      <div class="product-card__badge">
+        <span class="badge badge--sale">-{{ discount_pct }}%</span>
+      </div>
+    {%- endif -%}
+  </a>
+
+  <div class="product-card__body">
+    <div class="product-card__category">
+      {%- for tag in product.tags limit: 1 -%}{{ tag }}{%- endfor -%}
+    </div>
+
+    <h3 class="product-card__title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+
+    {%- if product.description != blank -%}
+      <p class="product-card__desc">{{ product.description | strip_html | truncate: 80 }}</p>
+    {%- endif -%}
+
+    <div class="product-card__footer">
+      <div class="product-card__price">
+        {%- if has_discount -%}
+          <span class="price__sale" aria-label="Pret redus: {{ product.price | money }}">{{ product.price | money }}</span>
+          <span class="price__compare" aria-label="Pret initial: {{ product.compare_at_price | money }}">{{ product.compare_at_price | money }}</span>
+        {%- else -%}
+          <span class="price__regular">{{ product.price | money }}</span>
+        {%- endif -%}
+      </div>
+
+      {%- if product.available -%}
+        {%- form 'product', product -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <button
+            type="submit"
+            class="btn btn--primary btn--sm product-card__atc"
+            data-atc-btn
+            aria-label="Adauga {{ product.title }} in cos"
+          >
+            Cumpara
+          </button>
+        {%- endform -%}
+      {%- else -%}
+        <span class="badge badge--sale">Indisponibil</span>
+      {%- endif -%}
+    </div>
+  </div>
+</article>
