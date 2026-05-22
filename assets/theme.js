@@ -12,34 +12,6 @@ if (mobileMenuBtn && mobileNav) {
   });
 }
 
-/* ---- Search Overlay ---- */
-const searchToggle = document.getElementById('search-toggle');
-const searchOverlay = document.getElementById('search-overlay');
-const searchClose = document.getElementById('search-close');
-const searchInput = document.getElementById('search-input');
-
-function openSearch() {
-  searchOverlay.classList.add('is-open');
-  searchToggle.setAttribute('aria-expanded', 'true');
-  document.body.style.overflow = 'hidden';
-  setTimeout(() => searchInput && searchInput.focus(), 50);
-}
-function closeSearch() {
-  searchOverlay.classList.remove('is-open');
-  searchToggle.setAttribute('aria-expanded', 'false');
-  document.body.style.overflow = '';
-}
-if (searchToggle) searchToggle.addEventListener('click', openSearch);
-if (searchClose) searchClose.addEventListener('click', closeSearch);
-if (searchOverlay) {
-  searchOverlay.addEventListener('click', (e) => {
-    if (e.target === searchOverlay) closeSearch();
-  });
-}
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && searchOverlay && searchOverlay.classList.contains('is-open')) closeSearch();
-});
-
 /* ---- Language Dropdown ---- */
 const langToggle = document.getElementById('lang-toggle');
 const langContainer = langToggle && langToggle.closest('.header-lang');

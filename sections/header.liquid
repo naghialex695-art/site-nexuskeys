@@ -22,13 +22,6 @@
     <!-- Actions -->
     <div class="header-actions">
 
-      <!-- Search -->
-      <button class="header-icon-btn" id="search-toggle" aria-label="Cauta produse" aria-expanded="false" aria-controls="search-overlay">
-        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      </button>
-
       <!-- Language -->
       {%- if localization.available_languages.size > 1 -%}
       <div class="header-lang" aria-label="Selecteaza limba">
@@ -95,34 +88,6 @@
     </div>
   </div>
 </header>
-
-<!-- Search Overlay -->
-<div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Cauta produse">
-  <div class="search-overlay__inner">
-    <form action="/search" method="get" class="search-overlay__form" role="search">
-      <input type="hidden" name="type" value="product">
-      <input
-        type="search"
-        name="q"
-        id="search-input"
-        class="search-overlay__input"
-        placeholder="Cauta licente software..."
-        autocomplete="off"
-        aria-label="Termen de cautare"
-      >
-      <button type="submit" class="search-overlay__submit" aria-label="Cauta">
-        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-      </button>
-    </form>
-    <button class="search-overlay__close" id="search-close" aria-label="Inchide cautarea">
-      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-      </svg>
-    </button>
-  </div>
-</div>
 
 <!-- Mobile Nav -->
 <nav class="mobile-nav" id="mobile-nav" aria-label="Meniu mobil">
